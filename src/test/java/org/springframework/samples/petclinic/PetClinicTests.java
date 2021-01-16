@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.springframework.samples.petclinic.model.TestCase;
 import org.springframework.samples.petclinic.model.TestCaseCreator;
+import org.springframework.samples.petclinic.model.TestRunner;
 import org.springframework.samples.petclinic.utility.CatchPageWebDriverEventListener;
 import org.springframework.samples.petclinic.model.WebPage;
 
@@ -19,8 +20,11 @@ public class PetClinicTests {
 		//Creazione classi (?)
 
 		TestCaseCreator crea=new TestCaseCreator();
-		List<TestCase> testCases=new ArrayList<>();
-		testCases=crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/ASDHA.side");
+		List<TestCase> testCases=crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/ASDHA.side");
+		TestRunner run=new TestRunner();
+		for (TestCase testCase:testCases) {
+			run.testRunner(testCase);
+		}
 		//metodo(FileJSON)
 		//Classe testRunner
 		//tutto su github

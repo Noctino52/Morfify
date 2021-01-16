@@ -1,11 +1,11 @@
 package org.springframework.samples.petclinic.model;
 
+import javafx.util.Pair;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,8 +41,17 @@ public class TestCaseCreator {
 			while(listCommands.hasNext()){
 				JSONObject commandJSON=listCommands.next();
 				//gestione targets
+				List<Pair<String,String>> listAlternative=new ArrayList<>();
+				JSONArray jsonAlternative= (JSONArray) commandJSON.get("targets");
+				Iterator<JSONArray>iterOfAlternative=jsonAlternative.iterator();
+				while(iterOfAlternative.hasNext()) {
+					JSONArray pairJSON = iterOfAlternative.next();
+					listAlternative.add(new Pair<String,String>
+						((String)pairJSON.get(0),(String)pairJSON.get(1)));
+				}
+				//Creazione command
 				Command command=new Command((String)commandJSON.get("comment"),(String)commandJSON.get("command"),
-					(String)commandJSON.get("target"),(String)commandJSON.get("value"));
+					(String)commandJSON.get("target"),(String)commandJSON.get("value"),listAlternative);
 				risCommand.add(command);
 			}
 			testCase.setCommands(risCommand);
@@ -56,6 +65,10 @@ public class TestCaseCreator {
 				System.out.println(command.getComment());
 				System.out.println(command.getTarget());
 				System.out.println(command.getValue());
+				for (Pair<String,String> alternative:command.getTargets()) {
+					System.out.println(alternative.getKey());
+					System.out.println(alternative.getValue());
+				}
 			}
 
 		}

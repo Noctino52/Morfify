@@ -10,14 +10,14 @@ public class Command {
 	private String command;
 	private String target;
 	private String value;
-	private List<List<Pair<String,String>>> targets;
+	private List<Pair<String,String>> targets;
 
-	public Command(String comment, String command, String target,String value) {
+	public Command(String comment, String command, String target,String value,List<Pair<String,String>> targets) {
 		this.comment = comment;
 		this.command = command;
 		this.target = target;
 		this.value=value;
-		//this.targets = targets;
+		this.targets = targets;
 	}
 
 	public String getComment() {
@@ -44,11 +44,11 @@ public class Command {
 		this.target = target;
 	}
 
-	public List<List<Pair<String, String>>> getTargets() {
+	public List<Pair<String, String>> getTargets() {
 		return targets;
 	}
 
-	public void setTargets(List<List<Pair<String, String>>> targets) {
+	public void setTargets(List<Pair<String, String>> targets) {
 		this.targets = targets;
 	}
 

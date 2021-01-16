@@ -5,13 +5,9 @@ import java.util.List;
 public class TestCase {
 	private String id;
 	private String name;
+	private String url;
 	private List<Command> commands;
 
-
-	public TestCase(String name, List<Command> commands) {
-		this.name = name;
-		this.commands = commands;
-	}
 
 	public String getName() {
 		return name;
@@ -27,5 +23,13 @@ public class TestCase {
 
 	public void setCommands(List<Command> commands) {
 		this.commands = commands;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 }

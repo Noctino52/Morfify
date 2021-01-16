@@ -1,6 +1,6 @@
 package org.springframework.samples.petclinic.model;
 
-import com.sun.tools.javac.util.Pair;
+import javafx.util.Pair;
 
 import java.util.List;
 
@@ -9,13 +9,15 @@ public class Command {
 	private String comment;
 	private String command;
 	private String target;
+	private String value;
 	private List<List<Pair<String,String>>> targets;
 
-	public Command(String comment, String command, String target, List<List<Pair<String, String>>> targets) {
+	public Command(String comment, String command, String target,String value) {
 		this.comment = comment;
 		this.command = command;
 		this.target = target;
-		this.targets = targets;
+		this.value=value;
+		//this.targets = targets;
 	}
 
 	public String getComment() {
@@ -48,5 +50,13 @@ public class Command {
 
 	public void setTargets(List<List<Pair<String, String>>> targets) {
 		this.targets = targets;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 }

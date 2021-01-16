@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.springframework.samples.petclinic.model.TestCase;
+import org.springframework.samples.petclinic.model.TestCaseCreator;
 import org.springframework.samples.petclinic.utility.CatchPageWebDriverEventListener;
 import org.springframework.samples.petclinic.model.WebPage;
 
@@ -16,6 +18,9 @@ public class PetClinicTests {
 	public static void main(String[] args)  {
 		//Creazione classi (?)
 
+		TestCaseCreator crea=new TestCaseCreator();
+		List<TestCase> testCases=new ArrayList<>();
+		testCases=crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/ASDHA.side");
 		//metodo(FileJSON)
 		//Classe testRunner
 		//tutto su github
@@ -23,7 +28,7 @@ public class PetClinicTests {
 
 
 		//Elenco classi e metodi
-		List<String> classNames=new ArrayList<>();
+		/*List<String> classNames=new ArrayList<>();
 		List<String> methodNames=new ArrayList<>();
 		List<List<WebPage>> testPages = null;
 
@@ -51,6 +56,7 @@ public class PetClinicTests {
 			}
 			System.out.println(listPage.size());
 		}
+		 */
 	}
 
 	public static List<List<WebPage>> executeTests(List<String> classNames,List<String> methodNames) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {

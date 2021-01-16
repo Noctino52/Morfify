@@ -6,7 +6,7 @@ Il materiale prodotto dal sottoscritto è presente nelle classi di test (src/tes
 Progetto sviluppato per l'attività di tirocinio svolta presso il Corso di Laurea Triennale in Informatica presso l'Università degli studi di Napoli Federico II.
 
 Anno accademico: 2020/2021
-##Breve Descrizione
+#Breve Descrizione
 Il progetto prevede l'uso della tecnica di metamorphic testing per testare l'applicativo PetClinic, il quale ha svolto il ruolo di _sample_, dato che, è servito per imparare ad usare quest'approccio al testing, che al sottoscritto (prima dell'inizio del progetto) era sconosciuto.
 
 Il test si focalizza sulla verifica di una determinata sezione del sorgente: Le operazione CRUD effettuabili sul Model della classe Pet.

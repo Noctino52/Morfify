@@ -30,7 +30,7 @@ In particolare, si è usato Selenium IDE per usare una registrazione di tipo cap
 
 ...
 
-##Note
+## Note
 
 NON E' CONSENTITO IL RIUSO ANCHE PARZIALE DI CODICE E DOCUMENTAZIONE CREATA DAL SOTTOSCRITTO PRESENTE IN QUESTA PAGINA.
 

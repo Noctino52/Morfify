@@ -20,16 +20,16 @@ public class PetClinicTests {
 		//Creazione classi (?)
 
 		TestCaseCreator crea=new TestCaseCreator();
-		List<TestCase> testCases=crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/ASDHA.side");
+		List<TestCase> testCases=crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/Prova.side");
 		TestRunner run=new TestRunner();
 		for (TestCase testCase:testCases) {
-			run.testRunner(testCase);
+			List<WebPage> htmlPages=run.testRunner(testCase);
+			System.out.println(htmlPages.size());
 		}
+
 		//metodo(FileJSON)
 		//Classe testRunner
 		//tutto su github
-
-
 
 		//Elenco classi e metodi
 		/*List<String> classNames=new ArrayList<>();

@@ -14,18 +14,18 @@ import java.util.function.Function;
 
 import static org.springframework.samples.petclinic.utility.StringSimilarity.similarity;
 
-
 public class CatchPageWebDriverEventListener extends AbstractWebDriverEventListener {
 
 	private List<WebPage> htmlPages;
+
 	private WebPage currentPage;
 
 	private CatchPageWebDriverEventListener listener;
 
-	public CatchPageWebDriverEventListener(){
-		this.htmlPages=new ArrayList<>();
-		this.currentPage=new WebPage("");
-		this.listener=this;
+	public CatchPageWebDriverEventListener() {
+		this.htmlPages = new ArrayList<>();
+		this.currentPage = new WebPage("");
+		this.listener = this;
 	}
 
 	@Override
@@ -63,17 +63,18 @@ public class CatchPageWebDriverEventListener extends AbstractWebDriverEventListe
 		after(driver);
 	}
 
-	public void before(WebDriver driver){
-		currentPage=new WebPage(driver.getPageSource());
+	public void before(WebDriver driver) {
+		currentPage = new WebPage(driver.getPageSource());
 	}
-	public void after(WebDriver driver){
+
+	public void after(WebDriver driver) {
 		waitForPageLoad(driver);
-		String after=driver.getPageSource();
-		if(similarity(currentPage.getHtmlPage(),after)<StringSimilarity.MAX_DIFFERENCE) {
+		String after = driver.getPageSource();
+		if (similarity(currentPage.getHtmlPage(), after) < StringSimilarity.MAX_DIFFERENCE) {
 			htmlPages.add(new WebPage(after));
-			System.out.println("Pagina");
 		}
 	}
+
 	public List<WebPage> getHtmlPages() {
 		return htmlPages;
 	}
@@ -83,9 +84,8 @@ public class CatchPageWebDriverEventListener extends AbstractWebDriverEventListe
 		Wait<WebDriver> wait = new WebDriverWait(driver, 30);
 		wait.until(new Function<WebDriver, Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return String
-					.valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
-					.equals("complete");
+				return String.valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
+						.equals("complete");
 			}
 		});
 	}

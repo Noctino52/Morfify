@@ -1,7 +1,9 @@
 package org.springframework.samples.petclinic.utility;
 
- public class StringSimilarity {
-	public static final double MAX_DIFFERENCE=0.9999999999999999;
+public class StringSimilarity {
+
+	public static final double MAX_DIFFERENCE = 0.9999999999999999;
+	public static final double SIMILARITYOFTWOPAGE = 0.75;
 
 	/**
 	 * Calculates the similarity (a number within 0 and 1) between two strings.
@@ -21,7 +23,8 @@ package org.springframework.samples.petclinic.utility;
 	}
 
 	// Example implementation of the Levenshtein Edit Distance
-	// See http://r...content-available-to-author-only...e.org/wiki/Levenshtein_distance#Java
+	// See
+	// http://r...content-available-to-author-only...e.org/wiki/Levenshtein_distance#Java
 	public static int editDistance(String s1, String s2) {
 		s1 = s1.toLowerCase();
 		s2 = s2.toLowerCase();
@@ -36,8 +39,7 @@ package org.springframework.samples.petclinic.utility;
 					if (j > 0) {
 						int newValue = costs[j - 1];
 						if (s1.charAt(i - 1) != s2.charAt(j - 1))
-							newValue = Math.min(Math.min(newValue, lastValue),
-								costs[j]) + 1;
+							newValue = Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
 						costs[j - 1] = lastValue;
 						lastValue = newValue;
 					}
@@ -50,7 +52,7 @@ package org.springframework.samples.petclinic.utility;
 	}
 
 	public static void printSimilarity(String s, String t) {
-		System.out.println(String.format(
-			"%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));
+		System.out.println(String.format("La similarità tra Source e FollowUp è del %.3f %%", (similarity(s, t))*100));
 	}
+
 }

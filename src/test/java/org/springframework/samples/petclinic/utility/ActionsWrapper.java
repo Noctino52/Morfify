@@ -11,23 +11,26 @@ import java.lang.reflect.Method;
 public class ActionsWrapper extends Actions {
 
 	public CatchPageWebDriverEventListener listener;
+
 	public WebElement element;
+
 	public WebDriver driver;
 
 	public ActionsWrapper(WebDriver driver, CatchPageWebDriverEventListener listener) {
 		super(driver);
-		this.listener=listener;
-		this.driver=driver;
+		this.listener = listener;
+		this.driver = driver;
 	}
 
 	@Override
 	public Actions moveToElement(WebElement target) {
-		this.element=target;
+		this.element = target;
 		return super.moveToElement(target);
 	}
 
 	@Override
 	public ActionWrapper build() {
-		return new ActionWrapper(super.build(),listener,driver);
+		return new ActionWrapper(super.build(), listener, driver);
 	}
+
 }

@@ -1,0 +1,228 @@
+{
+  "id": "8122c1f2-306f-45d7-af14-af27de53a989",
+  "version": "2.0",
+  "name": "ForumUninaTest",
+  "url": "https://www.informatica-unina.com",
+  "tests": [{
+    "id": "e4762732-bfbf-4e63-bcdb-6c5f050887b9",
+    "name": "Untitled",
+    "commands": [{
+      "id": "5c08370a-fcc5-45a1-90d0-b9bab63841c1",
+      "comment": "",
+      "command": "open",
+      "target": "/forum/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9c92b406-f452-4f30-83c5-055151a8f732",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1050x840",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "226a1d4c-feb5-42df-859e-61387475a403",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Login",
+      "targets": [
+        ["linkText=Login", "linkText"],
+        ["css=.ml-auto > .nav-item:nth-child(2) > .nav-link", "css:finder"],
+        ["xpath=//a[contains(text(),'Login')]", "xpath:link"],
+        ["xpath=//div[@id='navbar-collapse-header']/ul[2]/li[2]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//ul[2]/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8707eafa-58b3-4946-9b46-aca8915ee443",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//div[@id='login-popup']/div/div/form/div/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "08e9a2a7-0adc-458c-91ce-36585e490ce0",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//div[@id='login-popup']/div/div/form/div/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/div/input", "xpath:position"]
+      ],
+      "value": "Noctino52"
+    }, {
+      "id": "f9007990-16e1-44a2-be5e-e0c4145f6cbb",
+      "comment": "",
+      "command": "click",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='login-popup']/div/div/form/div/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2162fa9-0971-4b6d-bd30-5c334a775fca",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='login-popup']/div/div/form/div/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "Lavezzi1"
+    }, {
+      "id": "a6e18bef-a0ae-4716-a185-40832ae56a38",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='login-popup']/div/div/form/div/div/div/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "34fedee0-3f0d-4f55-9f02-d333a68714cc",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Ingegneria del Software I",
+      "targets": [
+        ["linkText=Ingegneria del Software I", "linkText"],
+        ["css=.container-fluid:nth-child(4) .subforum:nth-child(7)", "css:finder"],
+        ["xpath=//div[@id='page-body']/div[5]/div[4]/div/div/a[4]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, './viewforum.php?f=128')]", "xpath:href"],
+        ["xpath=//div[4]/div/div/a[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "314d7234-9ba9-411f-ad99-41231da96c97",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Nuovo argomento",
+      "targets": [
+        ["linkText=Nuovo argomento", "linkText"],
+        ["css=.clearfix:nth-child(8) > .float-left > .btn", "css:finder"],
+        ["xpath=//a[contains(text(),'Nuovo argomento')]", "xpath:link"],
+        ["xpath=//div[@id='page-body']/div[6]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, './posting.php?mode=post&f=128')]", "xpath:href"],
+        ["xpath=//div[6]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Nuovo argomento')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8a57a8b0-7334-4a8f-823a-ae866e1b5f5e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.card-body > .row:nth-child(1) > .col-lg-3",
+      "targets": [
+        ["css=.card-body > .row:nth-child(1) > .col-lg-3", "css:finder"],
+        ["xpath=//div[@id='postingbox']/div[2]/dl/dt", "xpath:idRelative"],
+        ["xpath=//dt", "xpath:position"],
+        ["xpath=//dt[contains(.,'Titolo:')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bfb2e7e1-c162-44d7-8a58-f0e300b5e9bf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.card-body > .row:nth-child(1) > .col-lg-3",
+      "targets": [
+        ["css=.card-body > .row:nth-child(1) > .col-lg-3", "css:finder"],
+        ["xpath=//div[@id='postingbox']/div[2]/dl/dt", "xpath:idRelative"],
+        ["xpath=//dt", "xpath:position"],
+        ["xpath=//dt[contains(.,'Titolo:')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca5f7a30-770e-42fa-ae4d-5b354ea25c44",
+      "comment": "",
+      "command": "click",
+      "target": "id=subject",
+      "targets": [
+        ["id=subject", "id"],
+        ["name=subject", "name"],
+        ["css=#subject", "css:finder"],
+        ["xpath=//input[@id='subject']", "xpath:attributes"],
+        ["xpath=//div[@id='postingbox']/div[2]/dl/dd/input", "xpath:idRelative"],
+        ["xpath=//dd/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a7faf5e6-f192-491e-b234-fd179edf01cb",
+      "comment": "",
+      "command": "type",
+      "target": "id=subject",
+      "targets": [
+        ["id=subject", "id"],
+        ["name=subject", "name"],
+        ["css=#subject", "css:finder"],
+        ["xpath=//input[@id='subject']", "xpath:attributes"],
+        ["xpath=//div[@id='postingbox']/div[2]/dl/dd/input", "xpath:idRelative"],
+        ["xpath=//dd/input", "xpath:position"]
+      ],
+      "value": "Miglior esame del CDL"
+    }, {
+      "id": "1848a10c-964a-4a8f-85eb-086145b6954a",
+      "comment": "",
+      "command": "click",
+      "target": "id=message",
+      "targets": [
+        ["id=message", "id"],
+        ["name=message", "name"],
+        ["css=#message", "css:finder"],
+        ["xpath=//textarea[@id='message']", "xpath:attributes"],
+        ["xpath=//div[@id='message-box']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "756a0396-f77b-474f-ad8c-8e3174767d6d",
+      "comment": "",
+      "command": "type",
+      "target": "id=message",
+      "targets": [
+        ["id=message", "id"],
+        ["name=message", "name"],
+        ["css=#message", "css:finder"],
+        ["xpath=//textarea[@id='message']", "xpath:attributes"],
+        ["xpath=//div[@id='message-box']/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Sisi è proprio bello"
+    }]
+  }],
+  "suites": [{
+    "id": "bc6be685-66aa-4e2f-9b91-a5daaec29d84",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e4762732-bfbf-4e63-bcdb-6c5f050887b9"]
+  }],
+  "urls": ["https://www.informatica-unina.com/"],
+  "plugins": []
+}

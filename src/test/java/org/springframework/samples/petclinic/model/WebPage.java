@@ -2,12 +2,14 @@ package org.springframework.samples.petclinic.model;
 
 import com.sun.istack.NotNull;
 
-public class WebPage {
+import java.io.Serializable;
+
+public class WebPage implements Serializable {
 
 	private String htmlPage;
 
-	public WebPage (String page){
-		this.htmlPage=page;
+	public WebPage(String page) {
+		this.htmlPage = page;
 	}
 
 	public String getHtmlPage() {
@@ -20,6 +22,7 @@ public class WebPage {
 
 	@Override
 	public String toString() {
-		return this.htmlPage;
+		return this.htmlPage.toString();
 	}
+
 }

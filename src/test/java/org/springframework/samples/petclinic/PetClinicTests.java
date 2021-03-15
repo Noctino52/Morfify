@@ -8,7 +8,9 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.springframework.samples.petclinic.model.*;
 import org.springframework.samples.petclinic.utility.CatchPageWebDriverEventListener;
 import org.springframework.samples.petclinic.utility.StringSimilarity;
+import org.springframework.samples.petclinic.utility.Triple;
 
+import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.MappedByteBuffer;
@@ -22,19 +24,19 @@ public class PetClinicTests {
 	public static  void main(String[] args) {
 
 		// To do:
-		//  Generazione nomi proprietari
+		// foto se poss
 
 		final Integer NUMBER_OF_FOLLOW_UP=3;
 		TestCaseCreator crea = new TestCaseCreator();
 		List<TestCase> testCases = crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/PetclinicAddPet.side");
 		//List<TestCase> testCases = crea.CreateFromJSON("C:/Users/ivan_/spring-petclinic/testFile/ForumUninaTest.side");
 		TestRunner run = new TestRunner();
-		Map<List<WebPage>,List<Pair<TestCase,List<WebPage>>>> allTestCases=new HashMap<>();
+		Map<Pair<List<WebPage>,List<File>>,List<Triple<TestCase,List<WebPage>,List<File>>>> allTestCases=new HashMap<>();
 		// Creazione delle regole
 		List<Rule> regole= new ArrayList<>();
 		Rule regola1=new Rule("http://localhost:8080/owners\\?lastName=","click","linkText=Mario Rossi",
 			"linkText=Mario Rossi|linkText=Ciro Esposito|linkText=Mario Bianchi|linkText=Michele Russo|linkText=Francesca Ferrara","SELECTOR");
-		Rule regola2=new Rule("http://localhost:8080/owners/[0-9]*/pets/new","type","id=name","([A-z]|[0-9]){10}","VALUES");
+		Rule regola2=new Rule("http://localhost:8080/owners/[0-9]*/pets/new","type","id=name","([A-z]|[0-9]){10}[?!]","VALUES");
 		Rule regola3=new Rule("https://www.informatica-unina.com/forum/index.php?sid=7ac8139d87b0417a85f9526a5fe19f50","click","linkText=Ingegneria del Software I",
 			"linkText=Algebra | linkText=Fisica Generale I | linkText=Algoritmi e Strutture Dati I","SELECTOR");
 		Rule regola4= new Rule("https://www.informatica-unina.com/forum/.*","click","id=message","id=subject","SELECTOR");
@@ -47,43 +49,50 @@ public class PetClinicTests {
 		regole.add(regola5);
 		for (TestCase testCase : testCases) {
 			// Source test case
-			List<WebPage> htmlPages = run.testRunner(testCase);
-			System.out.println("Pagine visitate Source: "+htmlPages.size());
-			List<Pair<TestCase, List<WebPage>>> followUpContainer=new ArrayList<>();
+			Pair<List<WebPage>,List<File>> htmlPages = run.testRunner(testCase);
+			List<Triple<WebPage,Boolean,File>> listHtmlPages=new ArrayList<>();
+			Iterator<WebPage> iterHtmlPages=htmlPages.getKey().iterator();
+			Iterator<File> iterHtmlPhoto=htmlPages.getValue().iterator();
+			while(iterHtmlPages.hasNext() && iterHtmlPhoto.hasNext())
+				listHtmlPages.add(new Triple<>(iterHtmlPages.next(),false,iterHtmlPhoto.next()));
+			testCase.createFile("Source",listHtmlPages);
+			System.out.println("Pagine visitate Source: "+htmlPages.getKey().size()+ htmlPages.getValue().size());
+			List<Triple<TestCase, List<WebPage>,List<File>>> followUpContainer=new ArrayList<>();
 			for(int i = 1; i<=NUMBER_OF_FOLLOW_UP; i++) {
 				//Follow-Up test cases
 				System.out.println("Follow-Up N."+i+" in esecuzione ...");
-				Pair<TestCase, List<WebPage>> followUp = run.createFollowupTestCase(testCase, regole);
+				Triple<TestCase, List<WebPage>,List<File>> followUp = run.createFollowupTestCase(testCase, regole);
 				followUpContainer.add(followUp);
-				System.out.println("Pagine visitate followUp: " + followUp.getValue().size());
+				System.out.println("Pagine visitate followUp: " + followUp.getSecond().size());
 			}
 			allTestCases.put(htmlPages,followUpContainer);
 		}
 		//Confronto delle pagine
-		Set<List<WebPage>> sourceTestCase=allTestCases.keySet();
-		for (List<WebPage> test: sourceTestCase){
-			Iterator<WebPage> iterSource=test.iterator();
-			for(Pair<TestCase,List<WebPage>> follow_Up : allTestCases.get(test)){
-				TestCase testCaseFollowUp=follow_Up.getKey();
-				Iterator<WebPage> iterFollowUp=follow_Up.getValue().iterator();
-				while(iterSource.hasNext() && iterFollowUp.hasNext()){
-					List<WebPage> faultyPages=new ArrayList<>();
+		Set<Pair<List<WebPage>,List<File>>> sourceTestCase=allTestCases.keySet();
+		for (Pair<List<WebPage>,List<File>> test: sourceTestCase){
+			for(Triple<TestCase,List<WebPage>,List<File>> follow_Up : allTestCases.get(test)){
+				TestCase testCaseFollowUp=follow_Up.getFirst();
+				Iterator<WebPage> iterFollowUp=follow_Up.getSecond().iterator();
+				Iterator<File> iterFollowUpFile=follow_Up.getThird().iterator();
+				Iterator<WebPage> iterSource=test.getKey().iterator();
+				List<Triple<WebPage,Boolean,File>> warningPages=new ArrayList<>();
+				while(iterSource.hasNext() && iterFollowUp.hasNext() && iterFollowUpFile.hasNext()){
 					WebPage sourceWebPage=iterSource.next();
 					WebPage followUpWebPage=iterFollowUp.next();
-					String pageHtmlSource=iterSource.next().getHtmlPage();
-					String pageHtmlFollowUp=iterFollowUp.next().getHtmlPage();
+					File followUpFile=iterFollowUpFile.next();
+					String pageHtmlSource=sourceWebPage.getHtmlPage();
+					String pageHtmlFollowUp=followUpWebPage.getHtmlPage();
 					if(similarity(pageHtmlSource,pageHtmlFollowUp) < StringSimilarity.SIMILARITYOFTWOPAGE) {
 						System.out.println("Le due pagine sono troppo diverse!");
-						if(!testCaseFollowUp.getWarning() && !testCaseFollowUp.getFaulty())testCaseFollowUp.setFaulty(true);
-						faultyPages.add(followUpWebPage);
+						if(!testCaseFollowUp.getFaulty() && !testCaseFollowUp.getWarning())testCaseFollowUp.setWarning(true);
+						warningPages.add(new Triple<>(followUpWebPage,true,followUpFile));
 						printSimilarity(pageHtmlSource,pageHtmlFollowUp);
 					}
-					if(testCaseFollowUp.getWarning()) testCaseFollowUp.createFile("Warning",null);
-					else if(testCaseFollowUp.getFaulty()) testCaseFollowUp.createFile("Faulty",faultyPages);
-					else testCaseFollowUp.createFile("Success",null);
+					else warningPages.add(new Triple<>(followUpWebPage,false,followUpFile));
 				}
-
-				System.out.println("I test Case sono quasi simili!");
+				if(testCaseFollowUp.getFaulty()) testCaseFollowUp.createFile("Faulty",warningPages);
+				else if(testCaseFollowUp.getWarning()) testCaseFollowUp.createFile("Warning",warningPages);
+				else testCaseFollowUp.createFile("Success",warningPages);
 			}
 		}
 	}

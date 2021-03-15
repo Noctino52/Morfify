@@ -11,7 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.samples.petclinic.utility.ActionsWrapper;
 import org.springframework.samples.petclinic.utility.CatchPageWebDriverEventListener;
+import org.springframework.samples.petclinic.utility.Triple;
 
+import java.io.File;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -36,7 +38,7 @@ public class TestRunner {
 	public TestRunner() {
 	}
 
-	public List<WebPage> testRunner(TestCase test) {
+	public Pair<List<WebPage>,List<File>> testRunner(TestCase test) {
 		// Creazione driver
 		initRunner();
 
@@ -44,10 +46,10 @@ public class TestRunner {
 			executeCommand(test, currCommand);
 		}
 		driver.quit();
-		return listener.getHtmlPages();
+		return new Pair<>(listener.getHtmlPages(),listener.getScreenshotPages());
 	}
 
-	public Pair<TestCase, List<WebPage>> createFollowupTestCase(TestCase testSource, List<Rule> rules) {
+	public Triple<TestCase, List<WebPage>,List<File>> createFollowupTestCase(TestCase testSource, List<Rule> rules) {
 		// Creazione driver etc...
 		initRunner();
 
@@ -59,11 +61,16 @@ public class TestRunner {
 			verifyRules(rules, currCommand);
 			// Eseguo il comando modificato, sto eseguendo il followUp
 			executeCommand(followUp, currCommand);
-			if(driver.getTitle() == null)followUp.setWarning(true);
+			try {
+				if (driver.getTitle() == null) followUp.setWarning(true);
+			}
+			catch(WebDriverException ignored){
+
+			}
 		}
 
 		driver.quit();
-		return new Pair<TestCase, List<WebPage>>(followUp, listener.getHtmlPages());
+		return new Triple<TestCase, List<WebPage>,List<File>>(followUp, listener.getHtmlPages(),listener.getScreenshotPages());
 	}
 
 	private void verifyRules(List<Rule> rules, Command currCommand) {

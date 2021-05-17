@@ -29,7 +29,7 @@ Spring Authentication
 
 L'applicativo permette di scegliere di salvare il DBMS con tecnologia in-memory (H2) oppure in modo tradizionale (MySql)
 ## Architettura del sistema
-![CompenentiMorfify.png]()
+![ComponentiMorfify](https://user-images.githubusercontent.com/20641545/118481966-66fcbb00-b714-11eb-8040-3a3d733ba957.png)
 
 ...
 

@@ -1,4 +1,4 @@
-# Status del progetto  [![License](https://img.shields.io/github/license/Noctino52/Morfify)](LICENSE.md) [![GitHub issues](https://img.shields.io/github/issues/Noctino52/Morfify)](https://github.com/Noctino52/Morfify) [![](https://img.shields.io/badge/Informatica%20Unina-project%20-32)](http://informatica.dieti.unina.it/index.php/it/)
+# Status del progetto  [![License](https://img.shields.io/github/license/Noctino52/Morfify)](LICENSE.md) [![GitHub issues](https://img.shields.io/github/issues/Noctino52/Morfify)](https://github.com/Noctino52/Morfify/issues) [![](https://img.shields.io/badge/Informatica%20Unina-project%20-32)](http://informatica.dieti.unina.it/index.php/it/)
 
 Morfify è ancora in una sua prima versione sperimentale, eventuali nuove versioni verranno rilasciate qui.
 

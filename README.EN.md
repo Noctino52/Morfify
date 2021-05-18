@@ -26,6 +26,8 @@ $ rm -rf Morfify
 Morfify is an eviroment of Metamorphic Testing for web application.  
 It uses the Metamorphic Testing technique to potentially test all the functionality of any program, simply starting from a test case (Source test case) registered with Selenium IDE.  
 With the use of a Metamorphic Relation, a property expressed in code of a function of the expected program, Morfify is able to create test cases with slight difference on the input, called Follow-up test cases and to verify if these tests are "similar" in terms of the contents of the pages visited during their execution.
+
+To show the potential of the eviroment, there is an example of use with the PetClinic *sample* web application.
 ## [Selenium](https://www.selenium.dev/)
 Is a testing framework and indicates a suite, composed of different tools: Selenium IDE, Selenium WebDriver, Selenium Builder, Selenium Server, Selenium Grid; in our case, we used the frist two.  
 Provides a domain language (DSL), which is a specification language dedicated to problems in a specific domain or to a particular technical solution.

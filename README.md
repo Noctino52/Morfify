@@ -7,7 +7,7 @@ Mortify is still in it's first releas, any new versions will be pubblished here.
 > Project developed for the apprentiship and three-year degree thesis from degree course in Computer Science at "Università degli studi di Napoli Federico II" (NA,Italy).  
 > Accademic year: 2020/2021
 
-*Read this in other languages: [Italian](readme.md).*
+*Read this in other languages: [Italian](readmeIT.md).*
 
 # How to start
 The application actually don't have any installer and for this must be imported in the own IDE for be executed.  
